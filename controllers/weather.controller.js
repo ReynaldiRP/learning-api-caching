@@ -2,7 +2,7 @@ const { getWeather } = require('../services/weather.service');
 
 const getWeatherData = async (req, res) => {
   try {
-    const weatherData = await getWeather();
+    const weatherData = await getWeather(true);
     res.json(weatherData);
   } catch (error) {
     res.status(500).json({ error: 'Failed to fetch weather data' });
