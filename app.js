@@ -1,5 +1,13 @@
-const { getWeatherData } = require('./controllers/weather.controller');
+const dotenv = require('dotenv');
 
+dotenv.config({
+  quiet: true,
+});
+
+const { getWeatherData } = require('./controllers/weather.controller');
+const { connectRedis } = require('./services/weather.service');
+
+connectRedis();
 const express = require('express');
 const app = express();
 
