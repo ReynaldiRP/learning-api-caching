@@ -98,6 +98,21 @@ const getWeather = async (location = '') => {
   }
 };
 
+/** * Clears the Redis cache for a specific location.
+ * @param {string} location
+ * @returns {Promise<void>}
+ * @throws {Error}
+ */
+const clearRedisCache = async (location) => {
+  const cacheKey = `weather:${location}`;
+  try {
+    await client.del(cacheKey);
+    console.log(`Cache cleared for location: ${cacheKey}`);
+  } catch (error) {
+    console.error('Error clearing Redis cache:', error);
+  }
+};
+
 module.exports = {
   getWeather,
   connectRedis,
